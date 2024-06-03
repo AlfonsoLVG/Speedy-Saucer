@@ -1,18 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://3u1yw1cbc4fe"]
+[gd_scene load_steps=6 format=3 uid="uid://3u1yw1cbc4fe"]
 
 [ext_resource type="Texture2D" uid="uid://bropd8i16m2jm" path="res://purple.png" id="1_ps5xn"]
 [ext_resource type="Script" path="res://level.gd" id="1_ukwer"]
 [ext_resource type="PackedScene" uid="uid://cxc00mhbr88wb" path="res://player.tscn" id="2_dn6t1"]
 [ext_resource type="PackedScene" uid="uid://m302np3eovc8" path="res://maze.tscn" id="3_p54of"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fnojp"]
+font_size = 32
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ukwer")
 
-[node name="Background" type="TextureRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_ps5xn")
 stretch_mode = 1
+
+[node name="StartLabel" type="Label" parent="Graphics"]
+offset_left = 99.0
+offset_top = 5.0
+offset_right = 176.0
+offset_bottom = 50.0
+text = "Start"
+label_settings = SubResource("LabelSettings_fnojp")
+
+[node name="EndLabel" type="Label" parent="Graphics"]
+offset_left = 787.0
+offset_top = 70.0
+offset_right = 864.0
+offset_bottom = 115.0
+text = "End"
+label_settings = SubResource("LabelSettings_fnojp")
+
+[node name="Tutorial" type="Label" parent="Graphics"]
+offset_left = 312.0
+offset_top = -17.0
+offset_right = 522.0
+offset_bottom = 58.0
+text = "1 Muevete con WASD
+2 Llega al final del nivel
+3 No te salgas del laberinto"
 
 [node name="Maze" parent="." instance=ExtResource("3_p54of")]
 
